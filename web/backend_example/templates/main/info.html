@@ -1,0 +1,127 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}
+DiMag | Information
+{% endblock %}
+
+
+{% block body %}
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+    <div class="container">
+
+        <div class="info-menu">
+            <div class="page-menu--header">On This Page</div>
+            <div class="page-menu--link-parent"><a href="#info">Using magnetic nanoparticles in MRI and <br>hyperthermia treatment</a></div>
+            <div class="page-menu--link-parent"><a href="#descriptors">Descriptors</a></div>
+            <div class="page-menu--link-parent"><a href="#algorithm">Prediction algorithm</a></div>
+            <div class="page-menu--link-parent"><a href="#functions">Recourse functions</a></div>
+            <div class="page-menu--link-parent"><a href="#limitations">Prediction limits</a></div>
+                    </div>
+          <div class="col-md-8 info-data">
+              <div>&nbsp;</div>
+        <div id='info'>
+            <h2>Using magnetic nanoparticles in MRI and hyperthermia treatment</h2>
+            <h4>
+                Medical treatments using magnetic nanoparticles have already shown prospective results in
+                clinic practice. As an example, Feridex® and Resovist® have been approved as magnetic resonance
+                imagining (MRI) contrast agents for liver imagining; several other magnetic nanoparticles for MRI have
+                undergone various stages of clinical trials. The reason for this is using magnetic nanoparticles as MRI
+                contrast agents detailed images of different tissues can be obtained that makes diagnosis of lesions more
+                accurate. Moreover, magnetic nanoparticles have recently been used in medical trials for hyperthermia
+                treatment glioblastoma, prostate and pancreatic cancer. It is possible because in this process cells undergo
+                heat stress so apoptosis, signal transduction and protein expression can be controlled. Using magnetic
+                nanoparticles in biomedical applications is possible thanks to the fact that performance of magnetic
+                nanoparticles in biomedical applications can be controlled adjusting size, shape, surface, composition of
+                nanoparticles and parameters of applied electromagnetic field.<br>
+                Detailed information can be found in the relevant review articles on the application of magnetic
+                nanoparticles in <a href="https://doi.org/10.1039/C7CS00316A">MRI</a>
+                and <a href="https://doi.org/10.1016/j.nantod.2017.02.006">hyperthermia</a>.
+            </h4>
+        </div>
+                <br>
+                <br>
+                <br>
+        <div id='descriptors' class="col-md-push-12 descriptors">
+            <h2>Descriptors</h2>
+            <h4>
+                Dataset was formed during the data processing that includes implementation of new descriptors using initial
+                parameters, correlation matrix analysis, removing outliers and filling of missing data.<br>
+                SAR and r<sub>1</sub>, r<sub>2</sub> relaxivities were chosen as predictive parameters because they reflect performance of nanoparticles in
+                hyperthermia treatment or MRI. They depend on many factors, so essential parameters were extracted from articles and
+                using them some derivative descriptors were calculated. All descriptors in the database reflect the composition of
+                core as average magnetic moment of core metals; composition of surface as spin of surface atoms, number of H
+                acceptors and LogP for organic coating molecules; shape as maximum to
+                minimum length ratio; size and surface fraction as surface area volume ratio; magnetic properties of nanoparticle
+                as coercivity, remanent and saturation magnetizations; experimental conditions as field strength, amplitude and
+                frequency, concentration of nanoparticles.
+            </h4>
+            <br>
+                <a class="models" ><img src="{% static "media/DB_picture_1.png" %}" alt="" width="800"></a>
+                <br>
+        </div>
+                <br>
+                <br>
+                <br>
+                            <div id='algorithm' class="col-md-push-12 algorithm">
+            <h2>Prediction algorithms</h2>
+            <h4>
+                For SAR prediction LightGBM Regressor was used with R<sup>2</sup> = 0.86, RMSE = 0.28 in 10-fold cross validation
+                and R<sup>2</sup> = 0.86, RMSE = 0.26 on test samples; ExtraTrees Regressor showed R<sup>2</sup> = 0.72, RMSE = 0.30 in 10-fold
+                cross validation and R<sup>2</sup> = 0.78, RMSE = 0.27 on test samples for prediction r<sub>1</sub> relaxivity and this algorithm
+                also is the best for prediction r<sub>2</sub> relaxivity values – it shows R<sup>2</sup> = 0.71 and RMSE = 0.25 in 10-fold cross-validation
+                and R<sup>2</sup> = 0.75 and RMSE = 0.22 for test sample
+                <br>
+                <br>
+                <a class="models" ><img src="{% static "media/Models_picture.png" %}" alt="" width="800"></a>
+            </h4>
+        </div>
+                <br>
+                <br>
+                <br>
+        <div id='functions' class="col-md-push-12 functions">
+            <h2>Recourse functions</h2>
+            <h4>
+            	&mdash; Database of magnetic nanoparticles for <a href="r1">r<sub>1</sub></a>/<a href="r2">r<sub>2</sub></a> relaxivities and <a href="sar">SAR</a> with samples mined from scientific articles and their visualizations<br>
+                &mdash; The opportunity to <a href="databaseoffer">offer</a> your sample<br>
+                &mdash; Prediction algorithms for different levels of user request:<br>
+	            &ndash; The basic level (<a href="basic">MRI</a> and <a href="basicsar">hyperthermia</a>):
+                user enters only the composition of core and size of nanoparticles. When predicting it is considered that the
+                nanoparticle is spherical and uncoated<br>
+	            &ndash;	The progressive level (<a href="medium">MRI</a> and <a href="mediumsar">hyperthermia</a>)
+                suggests describing nanoparticle: its core and shell composition, size and shape as well as
+                experimental conditions, except of magnetic properties of nanoparticles such as Saturation and
+                Remanent Magnetization, Coercivity<br>
+                &ndash;	Advanced level (<a href="prediction">MRI</a> and <a href="predictionsar">hyperthermia</a>)
+                assumes entering all descriptors: 11 for SAR and 8 for relaxivities prediction<br>
+                <br>
+                <a class="models" ><img src="{% static "media/site.jpg" %}" alt="" width="800"></a>
+            </h4>
+        </div>
+                <br>
+                <br>
+        <div id='limitations' class="col-md-push-12 limitations">
+            <h2>Prediction limitations</h2>
+                <h4>It is important to underline the current limitations of ML models to define robustness
+                    f predictions using new samples and to understand what data is needed to improve the model performance.
+                    First of all, most of the data in the database are ferrites with different compositions, so predictions
+                    properties of other types of materials may be more inaccurate. The prevalent distribution of parameters in
+                    the database is non-Gaussian, so algorithms predict biomedical characteristics of nanomaterials with high
+                    accuracy in areas of the highest probability density of descriptors (see Data Analysis in Methods). Moreover,
+                    descriptors used in this work do not describe all aspects of a given system. For example, because of lack of
+                    data such descriptors as hydrodynamic radius or zeta-potential were not used so behavior of nanoparticles in
+                    the environment was not taken into account. Shell thickness is an important parameter that influences the
+                    properties of magnetic nanoparticles, however because of few articles with measurements of this value, this
+                    descriptor was not used. Worth saying that all data used by ML models was collected from in vitro measurements,
+                    so these models do not reflect behavior of magnetic nanoparticles in vivo at all. For prediction of values in
+                    more complex biological systems, a large quantity of descriptors taking into account the huge number of
+                    interactions in the body must be used. Thus, there is a need for a thorough characterization of experiments in
+                    scientific articles for better quality of data and development of more complex descriptors for ML models.
+                </h4>
+        </div>
+
+    </div>
+    </div>
+{% endblock %}

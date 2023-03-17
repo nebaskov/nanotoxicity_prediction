@@ -1,0 +1,93 @@
+{% extends 'main/base.html' %}
+{% block title %}
+DiMag | Offer a nanoparticle
+{% endblock %}
+
+{% block body %}
+    <div class="col-md-7">
+    <div class="container">
+    <div class="features">
+        <h2> Enter new magnetic nanoparticle into the database</h2>
+        <h5><form method="POST">{% csrf_token %}
+            <div class="col-md-5">
+            <div class="form-group">
+      <div class="form-group">
+          <label for="paper_doi"><h4>Link to the article</h4></label><br>
+        <input type="text" id="paper_do" name="paper_do" required/>
+      </div>
+      <div class="form-group">
+          <label for="np_core"><h4>Chemical formula of core</h4></label><br>
+        <input type="text" id="np_core" name="np_core" required/>
+      </div>
+      <div class="form-group">
+          <label for="np_shell"><h4>Chemical formula of shell</h4></label><br>
+        <input type="text" id="np_shell" name="np_shell" required/>
+      </div>
+      <div class="form-group">
+          <label for="shape"><h4>Shape of nanoparticle</h4></label><br>
+        <input type="text" id="shape" name="shape" required/>
+      </div>
+      <div class="form-group">
+    <label for="length"><h4>Length, nm</h4></label><br>
+    <input type="number" step="any" min="0" id="length" name="length" required/>
+      </div>
+      <div class="form-group">
+    <label for="width"><h4>Width, nm</h4></label><br>
+    <input type="number" step="any" min="0" id="width" name="width" required/>
+      </div>
+      <div class="form-group">
+    <label for="depth"><h4>Depth, nm</h4></label><br>
+    <input type="number" step="any" min="0" id="depth" name="depth" required/>
+      </div>
+      <div class="form-group">
+          <label for="sat_magn"><h4>Saturation magnetization, Emu/g</h4></label><br>
+        <input type="number" step="any" min="0" id="sat_magn" name="sat_magn" required/>
+      </div>
+      <div class="form-group">
+          <label for="coerc"><h4>Coercivity, Oe</h4></label><br>
+        <input type="number" step="any" min="0" id="coerc" name="coerc" required/>
+      </div>
+      <div class="form-group">
+          <label for="rem_magn"><h4>Remanence magnetization, Emu/g</h4></label><br>
+        <input type="number" step="any" min="0" id="rem_magn" name="rem_magn" required/>
+      </div>
+            </div>
+            </div>
+      <div class="col-md-6">
+      <div class="form-group">
+      <h3>Nanoparticles for MRI applications:</h3>
+    <label for="field_strenght"><h4>Field strength, T</h4></label><br>
+    <input type="number" step="any" min="0" id="field_strenght" name="field_strenght"/>
+      </div>
+      <div class="form-group">
+    <label for="mri_r1"><h4>r<sub>1</sub> relaxivity, mM<sup>-1</sup>s<sup>-1</sup></h4></label><br>
+    <input type="number" step="any" min="0" id="mri_r1" name="mri_r1"/>
+      </div>
+      <div class="form-group">
+    <label for="mri_r2"><h4>r<sub>2</sub> relaxivity, mM<sup>-1</sup>s<sup>-1</sup></h4></label><br>
+    <input type="number" step="any" min="0" id="mri_r2" name="mri_r2"/>
+            </div>
+      <h3>Nanoparticles for hyperthermia applications:</h3>
+      <div class="form-group">
+    <label for="amp"><h4>Amplitude of field, kA/m</h4></label><br>
+    <input type="number" step="any" min="0" id="amp" name="amp"/>
+            </div>
+      <div class="form-group">
+    <label for="freq"><h4>Frequency of field, kHz</h4></label><br>
+    <input type="number" step="any" min="0" id="freq" name="freq"/>
+            </div>
+        <div class="form-group">
+    <label for="sar"><h4>SAR, W/g</h4></label><br>
+    <input type="number" step="any" min="0" id=sar" name="sar"/>
+            <br>
+            <br>
+      <p align="left">
+          <button type="submit" class="button1" value="Offer" name="Offer">Offer</button>
+            </p>
+        </div>
+      </div>
+        </form>
+    </h5></div>
+    </div>
+    </div>
+{% endblock %}

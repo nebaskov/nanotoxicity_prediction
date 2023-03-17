@@ -1,0 +1,86 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}DiMag{% endblock %}
+{% block body %}
+    <div class="container">
+    <div class="row">
+        <div class="col-md-5">
+     <div class="container pb-5">
+         <div><img src="{% static "media/logo.png" %}" alt="" width="410"></div></div>
+        <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+     <div class="container pb-5">
+     <div class="header name">
+        open access resource<br>
+        for quantitative prediction<br>
+        biomedical properties of<br>
+        magnetic nanoparticles for<br>
+        MRI and hyperthermia treatment<br>
+
+     </div></div>
+     <br>
+     <br>
+     <br>            &nbsp;
+        </div>
+        <div class="col-md-7">
+        <a class="dim-logo" href="{% url 'prediction_basic' %}"><img src="{% static "media/base_mri.png" %}" alt="" width="120"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a class="dim-logo" href="{% url 'prediction_medium' %}"><img src="{% static "media/progress_mri.png" %}" alt="" width="140"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a class="dim-logo" href="{% url 'prediction' %}"><img src="{% static "media/advanced_mri.png" %}" alt="" width="120"></a>
+        </div>
+        <div class="col-md-7">
+        <a class="dim-logo" href="{% url 'prediction_basic_sar' %}"><img src="{% static "media/base_sar.png" %}" alt="" width="120"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a class="dim-logo" href="{% url 'prediction_medium_sar' %}"><img src="{% static "media/progress_sar.png" %}" alt="" width="140"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a class="dim-logo" href="{% url 'prediction_sar' %}"><img src="{% static "media/advanced_sar.png" %}" alt="" width="120"></a>
+        </div>
+    </div></div>
+        <div class="container"> <div class="col-7">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#description"  class="button3 align-left  mr-2">Overview</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{% url 'info' %}"  class="button5 align-right ">&nbsp;Details&nbsp;</a>
+        </div></div>
+
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+
+
+    <div id='description' class="container pb-4 description">
+    <div class="col-md-10">
+        Medical treatment using magnetic nanoparticles have already shown perspective results in medical practice.
+        As an example, Feridex<sup>®</sup> and Resovist<sup>®</sup> have been approved as magnetic resonance imagining (MRI) contrast agents for
+        liver imagining; number of other magnetic nanoparticles for MRI have undergone various stages of clinical trials.
+        Moreover, magnetic nanoparticles have recently been used in medical trials for hyperthermia treatment glioblastoma,
+        prostate and pancreatic cancer. This was made possible thanks to the fact that performance of magnetic nanoparticles in
+        biomedical applications can be controlled adjusting size, shape, surface, composition of nanoparticles and parameters of
+        applied electromagnetic field.<br>
+        <br>
+        <br>
+        The developed DiMag recourse gives access to ML models for prediction biomedical characteristics
+        of magnetic nanoparticles on different levels of user requests: LGBM Regressor
+        and ExtraTrees Regressor models are used for predicting Specific Absorption Rate (SAR) value (<a href="predictionbasicsar">base</a>,
+        <a href="predictionmediumsar">progressive</a> and <a href="predictionsar">advanced</a>)
+        and r<sub>1</sub>/r<sub>2</sub> relaxivities (<a href="predictionbasic">base</a>,
+        <a href="predictionmedium">progressive</a> and <a href="prediction">advanced</a>)
+        respectively with sufficient accuracy: R<sup>2</sup> = 0.86 for prediction SAR value, 0.72 for r<sub>1</sub> relaxivity and 0.71 for r<sub>2</sub> relaxivity.
+        Moreover, the DiMag recourse contents a built-in expandable database of magnetic nanoparticles for MRI contrast enhancement
+        (<a href="databaser1">r<sub>1</sub></a>/<a href="databaser2">r<sub>2</sub></a> relaxivities) as well as
+        <a href="databasesar">hyperthermia treatment</a> with links to sources of
+        information and interactive visualization tool.
+
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    </div></div></div></div></div>
+        <div>&nbsp;</div>
+            <div>&nbsp;</div>
+        </div></div></div>
+        <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+
+    <div>&nbsp;</div>
+
+    <div>&nbsp;</div>
+{% endblock %}
