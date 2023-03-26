@@ -1,4 +1,4 @@
-,Material,Diameter (nm),Zeta potential (mV),Cell_type,Concentration (g/L),Viability (%),Coat,Line_Primary_Cell,Animal,Cell_morphology,Cell_age,Cell_organ,Time (h),Test,Test_indicator,Molecular weight (g/mol),Electronegativity,Elements,Ionic radius
+,Material,Diamkzeter (nm),Zeta potential (mV),Cell_type,Concentration (g/L),Viability (%),Coat,Line_Primary_Cell,Animal,Cell_morphology,Cell_age,Cell_organ,Time (h),Test,Test_indicator,Molecular weight (g/mol),Electronegativity,Elements,Ionic radius
 0,Ag,28.41,-33.33,HeLa,3.555454180043988e-07,3.661017,0,L,human,Epithelial,Adult,cervix,72.0,MTT,TetrazoliumSalt,107.8682,1.93,Ag,1.086666666666667
 1,Ag,28.41,-33.33,HeLa,2.84436334403519e-08,48.47682,0,L,human,Epithelial,Adult,cervix,48.0,NR,toluylene red,107.8682,1.93,Ag,1.086666666666667
 2,Ag,28.41,-33.33,HeLa,1.137745337614076e-07,65.960266,0,L,human,Epithelial,Adult,cervix,24.0,NR,toluylene red,107.8682,1.93,Ag,1.086666666666667

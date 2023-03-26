@@ -1,0 +1,31 @@
+{% extends 'main/base.html' %}
+
+{% block title %}DiMag | Help{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+    <div class="col-md-6">
+			<form method="POST"> {% csrf_token %}
+				<h2>Get in touch</h2>
+				<input type="hidden" id="contact_url" value="/contact">
+                <div class="form-group">
+                    <label for="Problem" align="justify"><h4>Have you come across a problem on the website or have any requests or suggestions? Please report it here!</h4></label>
+                    <textarea id="Problem" class="input-block-level form-control" name="Problem" required="" style="resize:none;" rows="4"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="Name"><h4>Name</h4></label>
+                    <input id="Name" class="form-control" name="Name" type="text" required="">
+                </div>
+
+                <div class="form-group">
+                    <label for="Email"><h4> Email address</h4></label>
+                    <input name="Email" class="form-control" id="Email" type="Email" placeholder="(optional)">
+                </div>
+				<p align="right">
+					<button class="button1" id="contact_submit"><i class="fa fa-envelope"></i> Submit</button>
+				</p>
+			</form>
+		</div>
+	</div>
+{% endblock %}

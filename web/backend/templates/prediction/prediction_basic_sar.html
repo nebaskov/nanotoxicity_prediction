@@ -1,0 +1,54 @@
+{% extends 'main/base.html' %}
+{% block title %}
+DiMag | Basic prediction
+{% endblock %}
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    {% load plotly_dash %}
+{% block body %}
+
+    <script>
+    function autofill() {
+    document.getElementById("core_comp").value = "Fe3O4"
+    document.getElementById("length").value = 20}
+    </script>
+
+    <div class="col-md-5">
+<h2>Prediction of SAR</h2>
+  <form method="POST"> {% csrf_token %}
+      <h3>Enter the following values to predict SAR</h3>
+      <div class="form-group">
+          <label for="core_comp"><h4>Chemical formula of nanoparticle</h4></label><br>
+        <input type="text" id="core_comp" name="core_comp" required/>
+      </div>
+      <div class="form-group">
+    <label for="length"><h4>Length, nm</h4></label><br>
+    <input type="number" step="any" min="0" id="length" name="length" required/>
+      </div>
+      <p align="left">
+          <button type="submit" class="button1" value="Predict" name="predict">Predict</button></p>
+     </form>
+        <p align="right"> <button onclick=autofill() class="button1">Autofill with example</button></p>
+         </div>
+
+
+      {% for d in data %}
+
+        <div class="col-md-7">
+    <h2>Prediction result</h2>
+        <h3> For {{ d.core_comp_0 }} nanoparticle:</h3>
+        <div class="container">
+        <div class="col-md-7">
+         <div class="{% plotly_class name='prediction' %} col-md-12 card shadow mb-4">
+         {% plotly_app name='prediction' ratio=0.7 %}
+         </div>
+         <div class="{% plotly_class name='pred_amp' %} col-md-12 card shadow mb-4">
+         {% plotly_app name='pred_amp' ratio=0.7 %}
+        </div>
+        <div class="{% plotly_class name='pred_freq' %} col-md-12 card shadow mb-4">
+         {% plotly_app name='pred_freq' ratio=0.7 %}
+        </div>
+        </div></div></div>
+{% endfor %}
+    </div>
+{% endblock %}

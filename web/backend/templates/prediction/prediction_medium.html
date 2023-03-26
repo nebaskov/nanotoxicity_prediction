@@ -1,0 +1,85 @@
+{% extends 'main/base.html' %}
+{% block title %}
+DiMag | Progressive prediction
+{% endblock %}
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    {% load plotly_dash %}
+{% block body %}
+
+    <script>
+    function autofill() {
+    document.getElementById("core_comp").value = "Fe3O4"
+    document.getElementById("length").value = 20
+    document.getElementById("width").value = 20
+    document.getElementById("depth").value = 20
+    document.getElementById("coat_comp").value = 0
+    document.getElementById("smiles").value = 0
+    document.getElementById("field_strenght").value = 3}
+    </script>
+
+    <div class="col-md-5">
+<h2>Prediction of MRI relaxivities</h2>
+  <form method="POST"> {% csrf_token %}
+      <h3>Enter the following values to predict <br>r<sub>1</sub> and r<sub>2</sub> relaxivities</h3>
+      <div class="form-group">
+          <label for="core_comp"><h4>Chemical formula of core</h4></label><br>
+        <input type="text" id="core_comp" name="core_comp" required/>
+      </div>
+      <div class="form-group">
+          <label for="shape"><h4>Shape of nanoparticle</h4></label><br>
+        <select id="shape" name="shape">
+            <option value="Spherical"><h4>Spherical</h4></option>
+            <option value="Cubic"><h4>Cubic</h4></option>
+            <option value="Rod"><h4>Rod</h4></option>
+            <option value="Rectangle"><h4>Rectangle</h4></option>
+    </select>
+      </div>
+      <div class="form-group">
+    <label for="length"><h4>Length, nm</h4></label><br>
+    <input type="number" step="any" min="0" id="length" name="length" required/>
+      </div>
+      <div class="form-group">
+    <label for="width"><h4>Width, nm</h4></label><br>
+    <input type="number" step="any" min="0" id="width" name="width" required/>
+      </div>
+      <div class="form-group">
+    <label for="depth"><h4>Depth, nm</h4></label><br>
+    <input type="number" step="any" min="0" id="depth" name="depth" required/>
+      </div>
+       <div class="form-group">
+          <label for="coat_comp"><h4>Chemical formula of shell</h4></label><br>
+        <input type="text" id="coat_comp" name="coat_comp" value=0 required/>
+      </div>
+      <div class="form-group">
+          <label for="smiles"><h4>SMILES of organic coating</h4></label><br>
+        <input type="text" id="smiles" name="smiles" value=0 required/>
+      </div>
+      <div class="form-group">
+    <label for="field_strenght"><h4>Field strength, T</h4></label><br>
+    <input type="number" step="any" min="0" id="field_strenght" name="field_strenght" required/>
+      </div>
+      <p align="left">
+          <button type="submit" class="button1" value="Predict" name="predict">Predict</button>
+      </p>
+         </form>
+    <p align="right"> <button onclick=autofill() class="button1">Autofill with example</button></p>
+    </div>
+
+      {% for d in data %}
+
+        <div class="col-md-7">
+    <h2>Prediction result</h2>
+     <h3> Nanoparticle at {{ d.field_strenght }} T has r1 = {{ d.mri_r11 }} and r2 = {{ d.mri_r22 }}  <br></h3>
+        <div class="container">
+        <div class="col-md-12">
+         <div class="{% plotly_class name='prediction' %} col-md-12 card shadow mb-4">
+         {% plotly_app name='prediction' ratio=0.7 %}
+         </div>
+                <div class="{% plotly_class name='pred' %} col-md-12 card shadow mb-4">
+         {% plotly_app name='pred' ratio=0.7 %}
+        </div>
+        </div></div></div>
+{% endfor %}
+    </div>
+{% endblock %}

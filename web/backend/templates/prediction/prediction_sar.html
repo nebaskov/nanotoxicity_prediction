@@ -1,0 +1,118 @@
+{% extends 'main/base.html' %}
+{% block title %}
+DiMag | Advanced prediction
+{% endblock %}
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    {% load plotly_dash %}
+{% block body %}
+
+    <script>
+    function autofill() {
+    document.getElementById("core_comp").value = "Fe3O4"
+    document.getElementById("length").value = 20
+    document.getElementById("width").value = 20
+    document.getElementById("depth").value = 20
+    document.getElementById("coat_comp").value = 0
+    document.getElementById("smiles").value = 0
+    document.getElementById("conc").value = 1
+    document.getElementById("sat_magn").value = 60
+    document.getElementById("coerc").value = 0
+    document.getElementById("rem_magn").value = 0
+    document.getElementById("field_amp").value = 20
+    document.getElementById("field_freq").value = 300}
+    </script>
+
+    <div class="col-md-5">
+<h2>Prediction of SAR</h2>
+  <form method="POST"> {% csrf_token %}
+      <h3>Enter the following values to predict SAR</h3>
+      <div class="form-group">
+          <label for="core_comp"><h4>Chemical formula of core</h4></label><br>
+        <input type="text" id="core_comp" name="core_comp" required/>
+      </div>
+      <div class="form-group">
+          <label for="shape"><h4>Shape of nanoparticle</h4></label>
+        <select id="shape" name="shape">
+            <option value="Spherical"><h4>Spherical</h4></option>
+            <option value="Cubic"><h4>Cubic</h4></option>
+            <option value="Rod"><h4>Rod</h4></option>
+            <option value="Rectangle"><h4>Rectangle</h4></option>
+    </select>
+      </div>
+      <div class="form-group">
+    <label for="length"><h4>Length, nm</h4></label>
+    <input type="number" step="any" min="0" id="length" name="length" required/><br>
+      </div>
+      <div class="form-group">
+    <label for="width"><h4>Width, nm</h4></label>
+    <input type="number" step="any" min="0" id="width" name="width" required/><br>
+      </div>
+      <div class="form-group">
+    <label for="depth"><h4>Depth, nm</h4></label>
+    <input type="number" step="any" min="0" id="depth" name="depth" required/><br>
+      </div>
+      <div class="form-group">
+          <label for="coat_comp"><h4>Chemical formula of shell</h4></label><br>
+        <input type="text" id="coat_comp" name="coat_comp" value=0 required/>
+      </div>
+      <div class="form-group">
+          <label for="smiles"><h4>SMILES of organic coating</h4></label><br>
+        <input type="text" id="smiles" name="smiles" value=0 required/>
+      </div>
+      <div class="form-group">
+          <label for="sat_magn"><h4>Saturation magnetization, emu/g</h4></label><br>
+        <input type="number" step="any" min="0" id="sat_magn" name="sat_magn" required/>
+      </div>
+      <div class="form-group">
+          <label for="coerc"><h4>Coercitivity, Oe</h4></label><br>
+        <input type="number" step="any" min="0" id="coerc" name="coerc" required/>
+      </div>
+      <div class="form-group">
+          <label for="rem_magn"><h4>Remanent magnetization, emu/g</h4></label><br>
+        <input type="number" step="any" min="0" id="rem_magn" name="rem_magn" required/>
+      </div>
+      <div class="form-group">
+          <label for="conc"><h4>Concentration of nanoparticles, mg/ml</h4></label><br>
+        <input type="number" step="any" min="0" id="conc" name="conc" required/>
+      </div>
+      <div class="form-group">
+          <label for="field_amp"><h4>Amplitude of field, kA/m</h4></label><br>
+        <input type="number" step="any" min="0" id="field_amp" name="field_amp" required/>
+      </div>
+      <div class="form-group">
+    <label for="field_freq"><h4>Frequency of field, kHz</h4></label><br>
+    <input type="number" step="any" min="0" id="field_freq" name="field_freq" required/>
+      </div>
+      <p align="left">
+          <button type="submit" class="button1" value="Predict" name="predict">Predict</button></p>
+      </form>
+       <p align="right"> <button onclick=autofill() class="button1">Autofill with example</button></p>
+       </div>
+
+
+      {% for d in data %}
+
+        <div class="col-md-7">
+    <h2>Prediction result</h2>
+     <h3> {{ d.core_comp_0 }} nanoparticle under the field with amplitude {{ d.field_amp }} kA/m and<br>
+         frequency {{ d.field_freq }} kHz has SAR = {{ d.sar1 }}  W/g<br></h3>
+        <div class="container">
+        <div class="col-md-7">
+         <div class="{% plotly_class name='prediction' %} col-md-12 card shadow mb-4">
+         {% plotly_app name='prediction' ratio=0.7 %}
+         </div>
+            <br>
+            <br>
+            <br>
+         <div class="{% plotly_class name='pred_amp' %} col-md-12 card shadow mb-4">
+         {% plotly_app name='pred_amp' ratio=0.7 %}
+        </div>
+        <div class="{% plotly_class name='pred_freq' %} col-md-12 card shadow mb-4">
+         {% plotly_app name='pred_freq' ratio=0.7 %}
+        </div>
+
+        </div></div></div>
+{% endfor %}
+    </div>
+{% endblock %}

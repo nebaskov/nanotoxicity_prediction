@@ -1,0 +1,112 @@
+{% load static %}
+<!doctype html>
+
+<html lang="en">
+<head>
+<link rel="shortcut icon" href="{% static 'media/miniicon.png' %}" type="image/x-icon" />
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link href="/static/main/css/main.css" rel="stylesheet">
+    <link href="http://fonts.cdnfonts.com/css/remachine-script-personal-use" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="header headerup">
+ <nav class="navbar navbar-expand-sm navbar-light bg-light">
+  <div class="container-fluid">
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    <a class="navbar-brand logo-di" href="/">DiMag</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="nav-item dropdown">
+			<a class="nav-item nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+				Prediction MRI<b class="caret"></b>
+			</a>
+				<ul class="dropdown-menu">
+				<li><a class="" href="{% url 'prediction_basic' %}">Base</a></li>
+				<li><a class="" href="{% url 'prediction_medium' %}">Progressive</a></li>
+				<li><a class="" href="{% url 'prediction' %}">Advanced</a></li>
+				</ul></li>
+        <li class="nav-item dropdown">
+			<a class="nav-item nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+				Prediction SAR<b class="caret"></b>
+			</a>
+				<ul class="dropdown-menu">
+				<li><a class="" href="{% url 'prediction_basic_sar' %}">Base</a></li>
+				<li><a class="" href="{% url 'prediction_medium_sar' %}">Progressive</a></li>
+				<li><a class="" href="{% url 'prediction_sar' %}">Advanced</a></li>
+				</ul></li>
+        <li class="nav-item dropdown">
+			<a class="nav-item nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+				Database<b class="caret"></b>
+			</a>
+				<ul class="dropdown-menu">
+				<li><a class="" href="{% url 'sar' %}">SAR</a></li>
+				<li><a class="" href="{% url 'r1' %}">r<sub>1</sub> relaxivity</a></li>
+				<li><a class="" href="{% url 'r2' %}">r<sub>2</sub> relaxivity</a></li>
+				</ul></li>
+        <li><a href="{% url 'offer' %}">Offer a sample</a></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="{% url 'info' %}">Information</a></li>
+        <li><a href="{% url 'contact' %}">Help</a></li>
+
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+</div>
+<br >
+<div class="content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+    {% block body %}
+
+    {% endblock %}
+</div></div>
+</div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+
+<footer>
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3 align-self-start text-center">
+             <a class="f-logo1" href="https://scamt.ifmo.ru/">
+             <img src="https://scamt.ifmo.ru//images/White logo2.png" alt="">
+             </a>
+        </div>
+        <div class="col-md-6 align-self-center contact text-center">
+                <h6>For all technical questions:&nbsp;<a href="mailto:kim@scamt-itmo.ru">Pavel V. Kim</a></h6>
+                <h6>Laboratory head:&nbsp;<a href="mailto:vinogradov@scamt-itmo.ru">Dr. Vladimir V. Vinogradov</a></h6>
+        </div>
+        <div class="col-md-3 align-self-end text-center">
+             <a class="f-logo2" href="http://www.ifmo.ru/ru/">
+             <img class="itmofoot" src="https://itmo.ru/file/pages/213/logo_osnovnoy_angliyskiy_belyy.png" alt="" width="200">
+             </a>
+        </div>
+    </div>
+</div>
+</footer>
+</body>
+</html>
